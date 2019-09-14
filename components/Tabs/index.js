@@ -20,9 +20,9 @@ const appendToTab = document.querySelector('.topics');
 
 
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
-  .then((response) => {
+  .then(response => {
     console.log(response);
-    response.data.topics.forEach((item) => {
+    response.data.topics.forEach(item => {
       let tabDiv = tabCreater(item);
       appendToTab.appendChild(tabDiv);
       return tabDiv
