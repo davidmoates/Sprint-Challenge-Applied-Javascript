@@ -26,7 +26,6 @@ const Tabs = topics => {
 // Create a Varible for the parent to append the child to.
 
 const parent = document.querySelector('.topics');
-console.log(parent);
 
 // Make the axios call to see how the data is layed out
 
