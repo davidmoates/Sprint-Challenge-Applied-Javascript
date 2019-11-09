@@ -43,6 +43,27 @@ const Cards = () => {
       return img
     };
 
+    const fullCard = (art) => {
+      const
+        card = divCr('card'),
+        headline = divCr('headline', art.headline),
+        aDiv = divCr('author'),
+        iDiv = divCr('img-container'),
+        image = imgCr(art.authorPhoto, art.authorName),
+        author = spanCr(art.authorName);
+
+      const parent = document.querySelector('.cards-container');
+
+      parent.appendChild(card);
+      card.appendChild(aDiv);
+      card.appendChild(headline);
+      aDiv.appendChild(iDiv);
+      aDiv.appendChild(author);
+      iDiv.appendChild(image);
+
+      return card
+    };
+
     // copied the axios call from tabs since I typed it out already
     // changing the url to articles instead of topics
 
@@ -51,106 +72,21 @@ const Cards = () => {
         console.log(resp);
 
         // now that data is being read, iterate data and return the articles for the cards
-        resp.data.articles.bootstrap.forEach(art => {
-            const
-              card = divCr('card'),
-              headline = divCr('headline', art.headline),
-              aDiv = divCr('author'),
-              iDiv = divCr('img-container'),
-              image = imgCr(art.authorPhoto, art.authorName),
-              author = spanCr(art.authorName);
-
-            const parent = document.querySelector('.cards-container');
-
-            parent.appendChild(card);
-            card.appendChild(aDiv);
-            card.appendChild(headline);
-            aDiv.appendChild(iDiv);
-            aDiv.appendChild(author);
-            iDiv.appendChild(image);
-
-            return card
+        resp.data.articles.bootstrap.forEach(data => {
+          fullCard(data)
           });
-          resp.data.articles.javascript.forEach(art => {
-              const
-                card = divCr('card'),
-                headline = divCr('headline', art.headline),
-                aDiv = divCr('author'),
-                iDiv = divCr('img-container'),
-                image = imgCr(art.authorPhoto, art.authorName),
-                author = spanCr(art.authorName);
-
-              const parent = document.querySelector('.cards-container');
-
-              parent.appendChild(card);
-              card.appendChild(aDiv);
-              card.appendChild(headline);
-              aDiv.appendChild(iDiv);
-              aDiv.appendChild(author);
-              iDiv.appendChild(image);
-
-              return card
-            });
-            resp.data.articles.jquery.forEach(art => {
-                const
-                  card = divCr('card'),
-                  headline = divCr('headline', art.headline),
-                  aDiv = divCr('author'),
-                  iDiv = divCr('img-container'),
-                  image = imgCr(art.authorPhoto, art.authorName),
-                  author = spanCr(art.authorName);
-
-                const parent = document.querySelector('.cards-container');
-
-                parent.appendChild(card);
-                card.appendChild(aDiv);
-                card.appendChild(headline);
-                aDiv.appendChild(iDiv);
-                aDiv.appendChild(author);
-                iDiv.appendChild(image);
-
-                return card
-              });
-              resp.data.articles.node.forEach(art => {
-                  const
-                    card = divCr('card'),
-                    headline = divCr('headline', art.headline),
-                    aDiv = divCr('author'),
-                    iDiv = divCr('img-container'),
-                    image = imgCr(art.authorPhoto, art.authorName),
-                    author = spanCr(art.authorName);
-
-                  const parent = document.querySelector('.cards-container');
-
-                  parent.appendChild(card);
-                  card.appendChild(aDiv);
-                  card.appendChild(headline);
-                  aDiv.appendChild(iDiv);
-                  aDiv.appendChild(author);
-                  iDiv.appendChild(image);
-
-                  return card
-                });
-                resp.data.articles.technology.forEach(art => {
-                    const
-                      card = divCr('card'),
-                      headline = divCr('headline', art.headline),
-                      aDiv = divCr('author'),
-                      iDiv = divCr('img-container'),
-                      image = imgCr(art.authorPhoto, art.authorName),
-                      author = spanCr(art.authorName);
-
-                    const parent = document.querySelector('.cards-container');
-
-                    parent.appendChild(card);
-                    card.appendChild(aDiv);
-                    card.appendChild(headline);
-                    aDiv.appendChild(iDiv);
-                    aDiv.appendChild(author);
-                    iDiv.appendChild(image);
-
-                    return card
-                  });
+        resp.data.articles.javascript.forEach(data => {
+          fullCard(data)
+          });
+        resp.data.articles.jquery.forEach(data => {
+          fullCard(data)
+          });
+        resp.data.articles.node.forEach(data => {
+          fullCard(data)
+          });
+        resp.data.articles.technology.forEach(data => {
+          fullCard(data)
+          });
       })
       .catch( err => {
         console.log('The error is', err);
